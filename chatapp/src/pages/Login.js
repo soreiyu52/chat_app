@@ -1,10 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
+import firebase from '../config/firebase';
 
-const Login = () => {
+const Login = ({ history }) => {
+    // email という名前の state 変数を宣言、初期値 '' をセット
+    const [email, setEmail] = useState('');
+    // password という名前の state 変数を宣言、初期値 '' をセット
+    const [password, setPassword] = useState('');
+
+    // Formのemail,passwordのIDを取得(DOM)
+    const em = document.getElementById("email");
+    const pass = document.getElementById("password");
+
+    const handleSubmit = (e) => {
+        // デフォルトの動きを抑制 
+        e.preventDefault();
+        // 入力値確かめ用(handleSubmitから取得したデータを表示)
+        console.log("email : " + email);
+        console.log("password : " + password);
+        // firebaseの機能を使用したログイン機能
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(() => {
+                // pushメソッドを使用することで、引数に指定したパスにリダイレクトを行う。
+                history.push("/");
+            }).catch(err => {
+                // エラー時の処理
+                // Formのemail,passwordの入力を削除
+                em.value = "";
+                pass.value = "";
+                // ログインエラーの時のポップアップ
+                alert('Wrong password.');
+                console.log(err);
+            })
+    }
+
     return (
         <>
             <h1>Login</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor='email'>E-mail</label>
                     <input
@@ -14,6 +46,9 @@ const Login = () => {
                         name='email'
                         // 初期値'Email'を入れる
                         placeholder='Email'
+                        //  入力された時に、state変数にセット   
+                        //  ※onchangeは入力欄や選択肢が変更された時に発生するイベント
+                        onChange={e => setEmail(e.target.value)}
                     />
                 </div>
                 <div>
@@ -25,6 +60,9 @@ const Login = () => {
                         name='password'
                         // 初期値'password'を入れる
                         placeholder='password'
+                        //  入力された時に、state変数にセット   
+                        //  ※onchangeは入力欄や選択肢が変更された時に発生するイベント
+                        onChange={e => setPassword(e.target.value)}
                     />
                 </div>
                 <button type='submit'>Login</button>
