@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import firebase from '../config/firebase';
 
+// history関数を引数とするLoginという関数を宣言している
+// history関数は全てのページの推移が入っている。
+// pushをすると、新しいページの推移が入るので新しいページのURL情報が入る。
 const Login = ({ history }) => {
     // email という名前の state 変数を宣言、初期値 '' をセット
     const [email, setEmail] = useState('');
@@ -20,7 +23,8 @@ const Login = ({ history }) => {
         // firebaseの機能を使用したログイン機能
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(() => {
-                // pushメソッドを使用することで、引数に指定したパスにリダイレクトを行う。
+                // pushメソッドを使用することで、引数に指定したパスにリダイレクトを行う
+                // pushをすると、新しいページの推移が入るので指定したURL情報が入る。
                 history.push("/");
             }).catch(err => {
                 // エラー時の処理
