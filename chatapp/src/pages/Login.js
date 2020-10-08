@@ -34,8 +34,8 @@ const Login = ({ history }) => {
                 // ログインエラーの時のポップアップ
                 alert('Wrong password.');
                 console.log(err);
-            })
-    }
+            });
+    };
 
     return (
         <>
@@ -72,7 +72,7 @@ const Login = ({ history }) => {
                 <button type='submit'>Login</button>
             </form>
         </>
-    )
-}
+    );
+};
 
 export default Login

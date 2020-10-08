@@ -24,7 +24,7 @@ const App = () => {
                 </Switch>
             </Router>
         </AuthProvider>
-    )
+    );
 }
 
 export default App
