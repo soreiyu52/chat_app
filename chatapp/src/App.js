@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Room from './pages/Room'
 import { AuthProvider } from "./AuthService";
+import LoggedInRoute from './LoggedInRoute'
 
 import {
     BrowserRouter as Router,
@@ -15,10 +16,12 @@ const App = () => {
     return (
         // 実行順の確かめ。
         console.log("App# return"),
+        // 認証機能を実装して、Roomページに入るときはユーザーがログイン済みか確認し
+        // ログインしていればRoomページに入れるようにする
         <AuthProvider>
             <Router>
                 <Switch>
-                    <Route exact path='/' component={Room} />
+                    <LoggedInRoute exact path='/' component={Room} />
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/signup' component={Signup} />
                 </Switch>
