@@ -14,7 +14,7 @@ const userDisplay =(user) =>{
 const LoggedInRoute = ({ component: Component, ...rest }) => {
     const user = useContext(AuthContext)
 
-    // ユーザー情報が入っていればcomponentに入っているの物をそのまま表示
+    // ユーザー情報が入っていればcomponentに入っているのをそのまま表示
     // 入っていなければloginページにリダイレクト
     return (
         // ユーザーの確かめ

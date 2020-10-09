@@ -10,11 +10,10 @@ const AuthProvider = ({ children }) => {
     // Auth オブジェクトでオブザーバーを設定することをおすすめします。
     // useEffect に渡された関数はレンダーの結果が画面に反映された後に動作します
     useEffect(() => {
+        console.log("AuthProvider# useEffect");
         // onAuthStateChanged ユーザーのログイン時、ログアウト時に必ず呼び出されるメソッド
         // もっというと状態が変化する事で呼び出される
         firebase.auth().onAuthStateChanged(user => {
-            // 実行順の確かめ。
-            console.log("AuthProvider# useEffect : " + user.email);
             // ユーザーオブジェクトを変数に代入
             setUser(user);
         });

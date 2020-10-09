@@ -16,6 +16,7 @@ const Login = ({ history }) => {
     // ユーザーのログイン情報がある場合はRoomにリダイレクト
     const user = useContext(AuthContext)
     if (user) {
+        console.log("Login# auth Redirect");
         return <Redirect to="/" />
     }
 
@@ -35,8 +36,8 @@ const Login = ({ history }) => {
             }).catch(err => {
                 // エラー時の処理
                 // Formのemail,passwordの入力を削除
-                em.value = "";
-                pass.value = "";
+                if(em != null) em.value = "";
+                if(pass != null) pass.value = "";
                 // ログインエラーの時のポップアップ
                 alert('Wrong password.');
                 console.log(err);
