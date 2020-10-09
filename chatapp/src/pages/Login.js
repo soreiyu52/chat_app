@@ -16,8 +16,7 @@ const Login = ({ history }) => {
     // ユーザーのログイン情報がある場合はRoomにリダイレクト
     const user = useContext(AuthContext)
     if (user) {
-        console.log("Login# auth Redirect");
-        return <Redirect to="/" />
+        return <Redirect to="/" />;
     }
 
     // Formのemail,passwordのIDを取得(DOM)
@@ -66,13 +65,13 @@ const Login = ({ history }) => {
                     <label htmlFor='password'>Password</label>
                     <input
                         type='password'
-                        // getElementByIdで取得するID
+                        // getElementByIdで取得するID  
                         id='password'
                         name='password'
-                        // 初期値'password'を入れる
+                        // 初期値'password'を入れる  
                         placeholder='password'
                         //  入力された時に、state変数にセット   
-                        //  ※onchangeは入力欄や選択肢が変更された時に発生するイベント
+                        //  ※onchangeは入力欄や選択肢が変更された時に発生するイベント  
                         onChange={e => setPassword(e.target.value)}
                     />
                 </div>

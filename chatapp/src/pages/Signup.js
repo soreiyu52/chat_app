@@ -27,8 +27,8 @@ const Signup = ({ history }) => {
             })
             .catch(err => {
                 // Formのemail,passwordの入力を削除
-                em.value = "";
-                pass.value = "";
+                if(em != null) em.value = "";
+                if(pass != null) pass.value = "";
                 // 作成失敗の時のポップアップ
                 alert('Wrong .');
                 console.log(err)
