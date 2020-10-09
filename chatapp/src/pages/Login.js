@@ -12,16 +12,11 @@ const Login = ({ history }) => {
     // password という名前の state 変数を宣言、初期値 '' をセット
     const [password, setPassword] = useState('');
 
-
     // ユーザーのログイン情報がある場合はRoomにリダイレクト
     const user = useContext(AuthContext)
     if (user) {
         return <Redirect to="/" />;
     }
-
-    // Formのemail,passwordのIDを取得(DOM)
-    const em = document.getElementById("email");
-    const pass = document.getElementById("password");
 
     const handleSubmit = (e) => {
         // デフォルトの動きを抑制 
@@ -35,8 +30,8 @@ const Login = ({ history }) => {
             }).catch(err => {
                 // エラー時の処理
                 // Formのemail,passwordの入力を削除
-                if(em != null) em.value = "";
-                if(pass != null) pass.value = "";
+                setEmail('');
+                setPassword('');
                 // ログインエラーの時のポップアップ
                 alert('Wrong password.');
                 console.log(err);
@@ -56,6 +51,7 @@ const Login = ({ history }) => {
                         name='email'
                         // 初期値'Email'を入れる
                         placeholder='Email'
+                        value={email}
                         //  入力された時に、state変数にセット   
                         //  ※onchangeは入力欄や選択肢が変更された時に発生するイベント
                         onChange={e => setEmail(e.target.value)}
@@ -70,6 +66,7 @@ const Login = ({ history }) => {
                         name='password'
                         // 初期値'password'を入れる  
                         placeholder='password'
+                        value={password}
                         //  入力された時に、state変数にセット   
                         //  ※onchangeは入力欄や選択肢が変更された時に発生するイベント  
                         onChange={e => setPassword(e.target.value)}

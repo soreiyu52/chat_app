@@ -11,10 +11,6 @@ const Signup = ({ history }) => {
     // password という名前の state 変数を宣言、初期値 '' をセット
     const [password, setPassword] = useState('');
 
-    // Formのemail,passwordのIDを取得(DOM)
-    const em = document.getElementById("email");
-    const pass = document.getElementById("password");
-
     const handleSubmit = (e) => {
         // デフォルトの動きを抑制 
         e.preventDefault();
@@ -27,8 +23,8 @@ const Signup = ({ history }) => {
             })
             .catch(err => {
                 // Formのemail,passwordの入力を削除
-                if(em != null) em.value = "";
-                if(pass != null) pass.value = "";
+                setEmail('');
+                setPassword('');
                 // 作成失敗の時のポップアップ
                 alert('Wrong .');
                 console.log(err)
@@ -49,6 +45,7 @@ const Signup = ({ history }) => {
                         id='email'
                         // 初期値'Email'を入れる
                         placeholder='Email'
+                        value={email}
                         //  入力された時に、state変数にセット
                         //  ※onchangeは入力欄や選択肢が変更された時に発生するイベント
                         onChange={e => setEmail(e.target.value)}
@@ -63,6 +60,7 @@ const Signup = ({ history }) => {
                         id='password'
                         // 初期値'password'を入れる
                         placeholder='Password'
+                        value={password}
                         //  入力された時に、state変数にセット
                         //  ※onchangeは入力欄や選択肢が変更された時に発生するイベント
                         onChange={e => setPassword(e.target.value)}
