@@ -5,7 +5,8 @@ import firebase from './config/firebase'
 const AuthContext = React.createContext()
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState(null);
+    const [isAuthChecked, setIsAuthChecked] = useState(false);
     // 現在ログインしているユーザーを取得するには、
     // Auth オブジェクトでオブザーバーを設定することをおすすめします。
     // useEffect に渡された関数はレンダーの結果が画面に反映された後に動作します
@@ -16,6 +17,8 @@ const AuthProvider = ({ children }) => {
         firebase.auth().onAuthStateChanged(user => {
             // ユーザーオブジェクトを変数に代入
             setUser(user);
+            // ユーザー認証終了フラグ
+            setIsAuthChecked(true);
         });
         // 空配列を渡す事で初回のみ実行する
     }, []);
@@ -25,9 +28,14 @@ const AuthProvider = ({ children }) => {
         console.log("AuthProvider# return"),
         // contextを使用し、user情報を別のコンポーネントに引き継ぐ
         // App.jsの AuthProvider で囲んでいる子要素を'children'で取得できる。
-        <AuthContext.Provider value={user}>
-            {children}
-        </AuthContext.Provider>
+        // 認証終了のチェックを入れることでリロード問題を解決
+        <>
+            {isAuthChecked && (
+                <AuthContext.Provider value={user}>
+                    {children}
+                </AuthContext.Provider>
+            )}
+        </>
     )
 }
 
