@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import firebase from '../config/firebase';
 import { AuthContext } from '../AuthService'
+import { Link } from 'react-router-dom';
 
 // history関数を引数とするLoginという関数を宣言している
 // history関数は全てのページの推移が入っている。
@@ -73,6 +74,9 @@ const Login = ({ history }) => {
                     />
                 </div>
                 <button type='submit'>Login</button>
+                <div>
+                    <Link to={("/signup")}> Sign Up</Link>
+                </div>
             </form>
         </>
     );
