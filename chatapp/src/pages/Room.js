@@ -55,7 +55,7 @@ const Room = ({ history }) => {
                     //  ※onchangeは入力欄や選択肢が変更された時に発生するイベント
                     onChange={e => setValue(e.target.value)}
                 />
-                <button type='submit'>投稿</button>
+                <button type='submit'>submit</button>
             </form>
             {/* ログアウト機能追加 */}
             <button onClick={() => firebase.auth().signOut()}>Logout</button>
