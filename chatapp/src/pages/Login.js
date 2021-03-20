@@ -73,7 +73,7 @@ const Login = ({ history }) => {
                         onChange={e => setPassword(e.target.value)}
                     />
                 </div>
-                <button type='submit'>Login</button>
+                <button type='submit'>Login!!</button>
                 <div>
                     <Link to={("/signup")}> Sign Up</Link>
                 </div>
